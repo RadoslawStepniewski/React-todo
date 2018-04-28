@@ -1,4 +1,5 @@
 .Person{
-    margin: 0 25%;
+    margin: 0 25%o;
     border: solid 2px red;
+    text-align: center
 }

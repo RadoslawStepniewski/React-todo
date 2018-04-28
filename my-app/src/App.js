@@ -9,17 +9,16 @@ class App extends Component {
       {name: "Radek", age: 23},
       {name: "Tomek", age: 67},
       {name: "Aga", age: 73}
-    ]
+    ],
+    showPerson : false
   }
 
   switchButtonHandler = () =>{
+    const show = this.state.showPerson;
     this.setState({
-      person: [
-        {name: "Radek123", age: 23},
-        {name: "Tomek123", age: 67},
-        {name: "Aga123", age: 73}
-      ]
+      showPerson : !show
     });
+    
   }
 
   switchChangeHandler = (e)=> {
@@ -53,9 +52,15 @@ class App extends Component {
     return (
       <div style={style}>
         <button onClick={this.switchButtonHandler}>Click</button>
-        <Person name={this.state.person[0].name} age={this.state.person[0].age} click={this.switchNameHandler.bind(this, "Basia")} change={this.switchChangeHandler}/>
-        <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchNameHandler.bind(this, "Kasia")} change={this.switchChangeHandler}/>
-        <Person name={this.state.person[2].name} age={this.state.person[2].age} click={this.switchNameHandler.bind(this, "Marta")} change={this.switchChangeHandler}>Children</Person>
+        {
+          this.state.showPerson === true ?
+            <div>
+              <Person name={this.state.person[0].name} age={this.state.person[0].age} click={this.switchNameHandler.bind(this, "Basia")} change={this.switchChangeHandler}/>
+              <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchNameHandler.bind(this, "Kasia")} change={this.switchChangeHandler}/>
+              <Person name={this.state.person[2].name} age={this.state.person[2].age} click={this.switchNameHandler.bind(this, "Marta")} change={this.switchChangeHandler}>Children</Person>
+            </div> : null 
+        }
+        
       </div>
     );
   }
