@@ -13,6 +13,14 @@ class App extends Component {
     showPerson : false
   }
 
+  deletePersonHandler = (i)=>{
+   const person = [...this.state.person];
+   person.splice(i, 1);
+   this.setState({person: person})
+
+  }
+
+
   switchButtonHandler = () =>{
     const show = this.state.showPerson;
     this.setState({
@@ -54,8 +62,13 @@ class App extends Component {
     if (this.state.showPerson){
       persons = (
        <div>
-         {this.state.person.map((e) =>{
-           return <Person name={e.name} age={e.age}/>
+         {this.state.person.map((e, i) =>{
+           return <Person 
+           key={i}
+           name={e.name} 
+           age={e.age}
+           click={()=>this.deletePersonHandler(i)}/>
+        
          })}
        
       </div>
@@ -65,7 +78,7 @@ class App extends Component {
     return (
       <div style={style}>
         <button onClick={this.switchButtonHandler}>Click</button>
-        {persons}
+        {persons }
     
       </div>
     );
